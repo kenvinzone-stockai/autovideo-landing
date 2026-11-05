@@ -1,240 +1,2436 @@
-<!doctype html>
-<html lang="vi">
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="KenvinZone AutoVideo — bộ giải pháp sản xuất video tự động trên đám mây. Có kênh video chạy tự động mỗi ngày, không cần biết AI hay công nghệ.">
-<title>KenvinZone AutoVideo</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="KenvinZone AutoVideo — Giải pháp xây dựng kênh video tự động mỗi ngày trên đám mây. Không cần biết AI, không cần máy tính mạnh, thiết lập trọn gói từ A–Z." />
+  <title>KenvinZone AutoVideo — Có Kênh Video Tự Động Mỗi Ngày, Không Cần Biết Công Nghệ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Lenis Smooth Scroll + GSAP & ScrollTrigger for Buttery 120fps Motion -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    /* ==========================================================================
+       SCROLL CRAFT PRO MOTION EDITION — CUSTOMER COMMERCIAL LANDING PAGE
+       Features:
+       1. Lenis Inertial Smooth Scrolling + Top Scroll Progress Ribbon
+       2. 4-Plane Dimensional Hero with 3D Mouse-Tilt Phone & Floating Satellite Badges
+       3. Live Karaoke Caption & Animated Mini-Chart inside Phone Mockup
+       4. Pinned Scroll-Driven Storyboard (Steps 01 -> 04 auto-scrub on scroll)
+       5. Mouse-Tracking Radial Spotlight Cards & Infinite Marquee
+       ========================================================================== */
+    :root {
+      --bg-page: #f7f4ed;
+      --bg-surface: #ffffff;
+      --bg-subtle: #efeae0;
+      --bg-cinema: #070b16;
+      --bg-cinema-elevated: #10182d;
+      --ink-primary: #131826;
+      --ink-secondary: #525b70;
+      --ink-muted: #7c859b;
+      --ink-on-dark: #f4f6fb;
+      --ink-on-dark-muted: #9aa7c2;
+      --gold: #d99b16;
+      --gold-bright: #f5c142;
+      --gold-soft: rgba(245, 193, 66, 0.16);
+      --royal-blue: #3b82f6;
+      --emerald: #10b981;
+      --crimson: #e11d48;
+      --border-light: #e2dcd0;
+      --border-strong: #cbc3b3;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-soft: 0 22px 55px rgba(19, 24, 38, 0.08);
+      --shadow-phone: 0 40px 95px rgba(3, 7, 18, 0.65);
+      --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #080c17;
+      --bg-surface: #10172a;
+      --bg-subtle: #0c1222;
+      --ink-primary: #f2f5fc;
+      --ink-secondary: #9ca9c4;
+      --ink-muted: #6c7a96;
+      --border-light: #1e2a47;
+      --border-strong: #2d3e66;
+      --gold: #f5c142;
+      --shadow-soft: 0 22px 55px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1220px, 92vw);
+      margin: 0 auto;
+    }
+
+    /* Top Scroll Progress Ribbon */
+    .scroll-progress-ribbon {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold-bright), #ff6b2b, var(--royal-blue));
+      z-index: 200;
+      box-shadow: 0 0 12px rgba(245, 193, 66, 0.7);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-soft);
+      border: 1px solid rgba(245, 193, 66, 0.38);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* Floating Glass Navigation Pill */
+    .floating-nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1180px, 94vw);
+      z-index: 120;
+      background: rgba(11, 16, 32, 0.84);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      padding: 10px 18px 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-bright), var(--royal-blue));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      box-shadow: 0 0 20px rgba(245, 193, 66, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold-bright);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .theme-btn:hover {
+      transform: rotate(15deg) scale(1.06);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    /* Magnetic & Shimmer Buttons */
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.98rem;
+      padding: 15px 28px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #ffe074 0%, #f5b926 55%, #e09600 100%);
+      color: #140f02;
+      box-shadow: 0 12px 32px rgba(245, 193, 66, 0.4);
+    }
+
+    .btn-gold::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      transform: skewX(-20deg);
+      animation: btnShimmer 4s infinite;
+    }
+
+    @keyframes btnShimmer {
+      0%, 65% { left: -100%; }
+      100% { left: 160%; }
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 42px rgba(245, 193, 66, 0.55);
+    }
+
+    .btn-outline-light {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-outline-light:hover {
+      border-color: var(--gold-bright);
+      color: var(--gold-bright);
+      transform: translateY(-2px);
+    }
+
+    .btn-sm {
+      padding: 9px 18px;
+      font-size: 0.86rem;
+    }
+
+    /* ==========================================================================
+       ACT I: 4-PLANE DIMENSIONAL HERO WITH 3D TILT & FLOATING SATELLITE CARDS
+       ========================================================================== */
+    .hero-stage {
+      position: relative;
+      background:
+        radial-gradient(980px 540px at 78% 15%, rgba(59, 130, 246, 0.32), transparent 62%),
+        radial-gradient(760px 480px at 14% 90%, rgba(245, 193, 66, 0.22), transparent 62%),
+        linear-gradient(165deg, #060913 0%, #0d152b 100%);
+      color: var(--ink-on-dark);
+      padding: 138px 0 96px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Plane 0: Animated Ambient Aurora Orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(75px);
+      pointer-events: none;
+      opacity: 0.45;
+      animation: floatOrb 10s ease-in-out infinite alternate;
+    }
+
+    .hero-orb.orb-1 {
+      width: 380px;
+      height: 380px;
+      background: rgba(245, 193, 66, 0.28);
+      top: 10%;
+      right: 12%;
+    }
+
+    .hero-orb.orb-2 {
+      width: 320px;
+      height: 320px;
+      background: rgba(59, 130, 246, 0.28);
+      bottom: 5%;
+      left: 8%;
+      animation-delay: -4s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(28px, -24px) scale(1.12); }
+    }
+
+    /* Plane 1: Kinetic Watermark */
+    .hero-watermark {
+      position: absolute;
+      top: 15%;
+      left: -3%;
+      font-size: clamp(5rem, 13.5vw, 12.5rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.055);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      will-change: transform;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 3.9rem);
+      font-weight: 900;
+      line-height: 1.09;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title .gold-grad {
+      background: linear-gradient(135deg, #ffe694 0%, #f5b935 60%, #ff9900 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.05rem, 1.32vw, 1.2rem);
+      color: var(--ink-on-dark-muted);
+      max-width: 575px;
+      margin-bottom: 28px;
+    }
+
+    .hero-lead strong {
+      color: #fff;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .hero-trust-strip {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 12px 22px;
+      justify-content: start;
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-trust-strip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Interactive 3D Phone Stage + Floating Satellite Cards */
+    .hero-phone-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      perspective: 1200px;
+    }
+
+    .niche-pills-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(12px);
+      z-index: 5;
+    }
+
+    .niche-pill {
+      font-family: inherit;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.22s ease;
+    }
+
+    .niche-pill.active {
+      background: var(--gold-bright);
+      color: #140f02;
+      box-shadow: 0 4px 16px rgba(245, 193, 66, 0.4);
+    }
+
+    .phone-stage-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform-style: preserve-3d;
+    }
+
+    .phone-3d-wrap {
+      position: relative;
+      width: min(304px, 82vw);
+      aspect-ratio: 9 / 18.6;
+      border-radius: 40px;
+      background: linear-gradient(165deg, #152347, #070c1a);
+      border: 2px solid rgba(255, 255, 255, 0.22);
+      box-shadow: var(--shadow-phone), 0 0 0 8px #040711;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out;
+    }
+
+    /* Animated Video Playhead inside Phone */
+    .phone-progress-segments {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .phone-seg {
+      height: 3px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .phone-seg-fill {
+      height: 100%;
+      width: 100%;
+      background: var(--gold-bright);
+      transform-origin: left;
+      animation: segPlay 6s linear infinite;
+    }
+
+    @keyframes segPlay {
+      0% { transform: scaleX(0); }
+      100% { transform: scaleX(1); }
+    }
+
+    .phone-notch {
+      width: 88px;
+      height: 18px;
+      background: #040711;
+      border-radius: 99px;
+      margin: 0 auto 6px;
+    }
+
+    .phone-status-pill {
+      align-self: center;
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #120d01;
+      background: linear-gradient(135deg, #fde68a, var(--gold-bright));
+      padding: 5px 13px;
+      border-radius: 99px;
+    }
+
+    .phone-screen-body {
+      text-align: center;
+      margin: auto 0;
+      padding: 8px 4px;
+    }
+
+    .phone-video-headline {
+      font-size: 1.32rem;
+      font-weight: 900;
+      line-height: 1.18;
+      color: #fff;
+      margin-bottom: 12px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .phone-video-headline span {
+      display: block;
+      color: var(--gold-bright);
+      font-size: 0.9rem;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    /* Live Mini Visual Chart inside Phone */
+    .phone-mini-chart {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .mini-chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 42px;
+      margin-top: 6px;
+    }
+
+    .mini-chart-bars span {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(to top, rgba(59, 130, 246, 0.4), var(--emerald));
+      animation: barPulse 2.4s ease-in-out infinite alternate;
+    }
+
+    .mini-chart-bars span:nth-child(2) { animation-delay: 0.3s; }
+    .mini-chart-bars span:nth-child(3) { animation-delay: 0.6s; }
+    .mini-chart-bars span:nth-child(4) { animation-delay: 0.9s; background: linear-gradient(to top, #f59e0b, #fde047); }
+    .mini-chart-bars span:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes barPulse {
+      0% { opacity: 0.75; transform: scaleY(0.88); }
+      100% { opacity: 1; transform: scaleY(1.06); }
+    }
+
+    .phone-karaoke-box {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(245, 193, 66, 0.35);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: 0.76rem;
+      color: #f8fafc;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .phone-karaoke-box mark {
+      background: var(--gold-bright);
+      color: #0b0f19;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .phone-voice-wave {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4px;
+      height: 26px;
+    }
+
+    .phone-voice-wave i {
+      width: 4px;
+      background: linear-gradient(to top, var(--royal-blue), var(--gold-bright));
+      border-radius: 99px;
+      animation: waveEq 1.1s ease-in-out infinite;
+    }
+
+    .phone-voice-wave i:nth-child(2) { animation-delay: 0.15s; }
+    .phone-voice-wave i:nth-child(3) { animation-delay: 0.35s; }
+    .phone-voice-wave i:nth-child(4) { animation-delay: 0.1s; }
+    .phone-voice-wave i:nth-child(5) { animation-delay: 0.45s; }
+    .phone-voice-wave i:nth-child(6) { animation-delay: 0.25s; }
+    .phone-voice-wave i:nth-child(7) { animation-delay: 0.05s; }
+
+    @keyframes waveEq {
+      0%, 100% { height: 26%; }
+      50% { height: 100%; }
+    }
+
+    .phone-approve-card {
+      background: rgba(16, 185, 129, 0.18);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: #ecfdf5;
+      cursor: pointer;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .phone-approve-card:hover {
+      transform: scale(1.02);
+      background: rgba(16, 185, 129, 0.28);
+    }
+
+    .phone-approve-btn {
+      background: var(--emerald);
+      color: #042f2e;
+      font-weight: 800;
+      padding: 5px 11px;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Plane 3: Floating Satellite Badges around Phone */
+    .satellite-badge {
+      position: absolute;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+      z-index: 4;
+      animation: floatBadge 4.5s ease-in-out infinite alternate;
+    }
+
+    .satellite-badge.sat-left {
+      left: -58px;
+      top: 22%;
+    }
+
+    .satellite-badge.sat-right {
+      right: -54px;
+      bottom: 24%;
+      animation-delay: -2.2s;
+    }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* ==========================================================================
+       INFINITE SMOOTH MARQUEE TICKER
+       ========================================================================== */
+    .marquee-strip {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-light);
+      padding: 16px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 14px;
+      animation: marqueeScroll 32s linear infinite;
+    }
+
+    .marquee-strip:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .audience-chip {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       ACT II: PAIN VS PROMISE + INTERACTIVE TIME/COST SAVINGS CALCULATOR
+       ========================================================================== */
+    .section-pad {
+      padding: clamp(68px, 8vw, 112px) 0;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto 48px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.85rem, 4vw, 2.9rem);
+      font-weight: 900;
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-head p {
+      color: var(--ink-secondary);
+      font-size: 1.08rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .comp-box {
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      transition: transform 0.25s ease;
+    }
+
+    .comp-box.old-way {
+      background: var(--bg-subtle);
+      border: 1.5px dashed var(--border-strong);
+    }
+
+    .comp-box.new-way {
+      background: linear-gradient(155deg, rgba(245, 193, 66, 0.16), var(--bg-surface));
+      border: 2px solid var(--gold);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .comp-box h3 {
+      font-size: 1.32rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .comp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .comp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.98rem;
+    }
+
+    .badge-x {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(225, 29, 72, 0.12);
+      color: var(--crimson);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    .badge-v {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--emerald);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    /* Interactive Savings Calculator */
+    .savings-calculator {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .calc-outcome-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .calc-stat-box {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .calc-stat-num {
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1.1;
+      margin-bottom: 4px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       ACT III: SCROLL-LINKED 1-2-3-4 STORYBOARD (Auto-activates as you scroll!)
+       ========================================================================== */
+    .storyboard-section {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: clamp(68px, 8vw, 112px) 0;
+    }
+
+    .storyboard-split {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .step-cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .journey-card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      cursor: pointer;
+      transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+
+    .journey-card.active {
+      border-color: var(--gold);
+      box-shadow: 0 20px 50px rgba(217, 155, 22, 0.16);
+      transform: translateX(8px);
+    }
+
+    .journey-step-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+
+    .journey-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .journey-card p {
+      color: var(--ink-secondary);
+      font-size: 0.96rem;
+    }
+
+    /* Sticky Visual Preview Box with Animated Stage Graphics */
+    .journey-visual-sticky {
+      position: sticky;
+      top: 96px;
+      background: linear-gradient(160deg, #090f20, #111c38);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 30px 70px rgba(6, 10, 22, 0.42);
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .jv-step-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .jv-dot {
+      width: 24px;
+      height: 5px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.18);
+      transition: all 0.25s ease;
+    }
+
+    .jv-dot.active {
+      width: 42px;
+      background: var(--gold-bright);
+    }
+
+    .jv-stage-box {
+      margin: auto 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 26px;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .jv-mock-ui {
+      margin-top: 16px;
+      background: rgba(0, 0, 0, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      color: #e2e8f0;
+    }
+
+    /* ==========================================================================
+       ACT IV: MOUSE-SPOTLIGHT VALUE CARDS & TURNKEY A–Z SERVICE
+       ========================================================================== */
+    .bento-values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .value-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    /* Dynamic Mouse Spotlight Layer */
+    .value-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(245, 193, 66, 0.15),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .value-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .value-card:hover::before {
+      opacity: 1;
+    }
+
+    .value-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      background: var(--gold-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.55rem;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .value-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .value-card p {
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Turnkey A-Z Cinema Band */
+    .turnkey-band {
+      background: linear-gradient(160deg, var(--bg-cinema), var(--bg-cinema-elevated));
+      color: var(--ink-on-dark);
+      padding: clamp(68px, 8vw, 108px) 0;
+    }
+
+    .turnkey-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 40px;
+    }
+
+    .turnkey-step {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .turnkey-step:hover {
+      transform: translateY(-5px);
+      border-color: rgba(245, 193, 66, 0.5);
+    }
+
+    .turnkey-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #ffd25a, #eab026);
+      color: #140f02;
+      font-weight: 900;
+      font-size: 1.12rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .turnkey-step h3 {
+      font-size: 1.14rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .turnkey-step p {
+      color: var(--ink-on-dark-muted);
+      font-size: 0.92rem;
+    }
+
+    /* ==========================================================================
+       ACT V: PROOF METRICS, FAQ & DIRECT LEAD COMPOSER
+       ========================================================================== */
+    .proof-bar {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      padding: 52px 0;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .proof-num {
+      font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .proof-label {
+      color: var(--ink-secondary);
+      font-size: 0.92rem;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .faq-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    details.faq-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 4px 22px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    details.faq-item[open] {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-soft);
+    }
+
+    details.faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 18px 0;
+      font-weight: 700;
+      font-size: 1.04rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.faq-item summary::after {
+      content: "+";
+      color: var(--gold);
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    details.faq-item[open] summary::after {
+      content: "−";
+    }
+
+    details.faq-item p {
+      color: var(--ink-secondary);
+      padding-bottom: 18px;
+      font-size: 0.96rem;
+    }
+
+    /* Contact & Consultation Section */
+    .contact-section {
+      background:
+        radial-gradient(800px 400px at 80% 100%, rgba(245, 193, 66, 0.18), transparent 60%),
+        linear-gradient(165deg, #070b16, #0e172c);
+      color: var(--ink-on-dark);
+      padding: clamp(68px, 8vw, 110px) 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 36px;
+      margin-top: 40px;
+      align-items: start;
+    }
+
+    .contact-card-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .contact-card-item:hover {
+      transform: translateX(4px);
+      border-color: rgba(245, 193, 66, 0.45);
+    }
+
+    .contact-card-item .icon {
+      font-size: 1.65rem;
+    }
+
+    .contact-card-item .meta-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-on-dark-muted);
+    }
+
+    .contact-card-item .meta-val {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .copy-pill {
+      margin-left: auto;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-radius: 99px;
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .lead-form-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+    }
+
+    .form-field {
+      margin-bottom: 14px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.96rem;
+    }
+
+    .form-field select option {
+      background: #0e172c;
+      color: #fff;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: 2px solid var(--gold-bright);
+      border-color: transparent;
+    }
+
+    .composed-result {
+      margin-top: 16px;
+      background: rgba(245, 193, 66, 0.12);
+      border: 1px solid rgba(245, 193, 66, 0.45);
+      border-radius: 14px;
+      padding: 16px;
+      font-size: 0.92rem;
+    }
+
+    /* Floating Bottom-Right Quick Consultation Action */
+    .floating-cta-fab {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 110;
+      background: linear-gradient(135deg, #ffe074, #eab026);
+      color: #140f02;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 12px 20px;
+      border-radius: 999px;
+      box-shadow: 0 14px 35px rgba(245, 193, 66, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    .floating-cta-fab:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+      /* Persona & Deep Pain-Point Styles */
+      .persona-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 36px;
+      }
+
+      .persona-card {
+        position: relative;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        overflow: hidden;
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .persona-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--gold);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .persona-tag {
+        display: inline-block;
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--gold);
+        background: var(--gold-soft);
+        padding: 4px 10px;
+        border-radius: 99px;
+        margin-bottom: 12px;
+      }
+
+      .persona-card h3 {
+        font-size: 1.16rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+        line-height: 1.3;
+      }
+
+      .persona-card p {
+        color: var(--ink-secondary);
+        font-size: 0.94rem;
+      }
+
+      .tumlai-banner {
+        background: linear-gradient(155deg, #090f20, #131f3e);
+        color: #fff;
+        border-radius: var(--radius-lg);
+        padding: 36px;
+        border: 1.5px solid rgba(245, 193, 66, 0.45);
+        box-shadow: 0 24px 60px rgba(6, 10, 22, 0.28);
+        margin-bottom: 36px;
+      }
+
+      .tumlai-flow {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1.2fr;
+        gap: 14px;
+        align-items: center;
+        margin-top: 22px;
+      }
+
+      .tumlai-node {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 16px;
+        padding: 18px 20px;
+      }
+
+      .tumlai-arrow {
+        font-size: 1.5rem;
+        color: var(--gold-bright);
+        font-weight: 900;
+      }
+
+      .scope-notice-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 22px;
+        margin-top: 28px;
+      }
+
+      .scope-card {
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        border: 1.5px solid var(--border-light);
+        background: var(--bg-surface);
+      }
+
+      .scope-card.fit {
+        border-color: var(--emerald);
+        background: linear-gradient(160deg, rgba(16, 185, 129, 0.08), var(--bg-surface));
+      }
+
+      .scope-card.not-fit {
+        border-style: dashed;
+        border-color: var(--border-strong);
+        background: var(--bg-subtle);
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .persona-grid,
+        .tumlai-flow,
+        .scope-notice-grid,
+        .comparison-grid,
+        .savings-calculator,
+        .storyboard-split,
+        .bento-values,
+        .turnkey-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .tumlai-arrow {
+          transform: rotate(90deg);
+          text-align: center;
+        }
+        .proof-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .nav-links,
+        .satellite-badge {
+          display: none;
+        }
+        .journey-visual-sticky {
+          position: relative;
+          top: 0;
+        }
+      }
+  </style>
 </head>
 <body>
 
+  <!-- Top Scroll Progress Ribbon -->
+  <div class="scroll-progress-ribbon" id="scroll-ribbon"></div>
 
-<header class="bar">
-  <div class="wrap">
-    <div class="logo"><span class="mk"></span> KenvinZone <span style="color:var(--gold)">AutoVideo</span></div>
-    <div class="cta"><a class="btn primary" href="#lienhe">Liên hệ tư vấn</a></div>
-  </div>
-</header>
+  <!-- Floating Glass Navigation -->
+  <header class="floating-nav">
+    <a href="#" class="brand-logo">
+      <span class="brand-mark">🎬</span>
+      <span>KenvinZone <span style="color: var(--gold-bright)">AutoVideo</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#ai-phu-hop">Ai phù hợp?</a>
+      <a href="#loi-ich">Nỗi đau &amp; Giải pháp</a>
+      <a href="#cach-hoat-dong">Cách hoạt động (1-2-3-4)</a>
+      <a href="#khac-biet">Ưu điểm chi phí</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-btn" id="theme-toggle" title="Đổi giao diện Sáng / Tối" onclick="toggleTheme()">🌙</button>
+      <a href="#lienhe" class="btn btn-gold btn-sm">Nhận tư vấn FREE</a>
+    </div>
+  </header>
 
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="wrap">
-    <div>
-      <span class="eyebrow">Bộ giải pháp sản xuất video tự động</span>
-      <h1>Có kênh video chạy <span class="g">tự động mỗi ngày</span> — dù bạn không biết gì về AI.</h1>
-      <p class="lead">Chúng tôi dựng sẵn cho bạn một “nhà máy video” chạy trên đám mây: tự viết kịch bản, tự lồng giọng đọc, tự dựng hình chuyên nghiệp và tự đăng YouTube, TikTok. Bạn chỉ việc xem và bấm duyệt.</p>
-      <div class="acts">
-        <a class="btn primary" href="#lienhe">🚀 Nhận tư vấn miễn phí</a>
-        <a class="btn ghost" href="#cachhoatdong">Xem cách hoạt động</a>
+  <!-- Floating Quick CTA Button -->
+  <a href="#lienhe" class="floating-cta-fab">
+    <span>💬 Nhận Demo Kênh Miễn Phí</span>
+  </a>
+
+  <!-- ========================================================================
+       ACT I: 4-PLANE DIMENSIONAL HERO (WITH 3D MOUSE TILT & NICHE SWITCHER)
+       ======================================================================== -->
+  <section class="hero-stage" id="hero-section">
+    <!-- Plane 0: Ambient Aurora Orbs -->
+    <div class="hero-orb orb-1" aria-hidden="true"></div>
+    <div class="hero-orb orb-2" aria-hidden="true"></div>
+
+    <!-- Plane 1: Kinetic Watermark -->
+    <div class="hero-watermark" id="hero-watermark">KENVINZONE CLOUD STUDIO</div>
+
+    <div class="container hero-grid">
+      <div class="gsap-hero-copy">
+        <span class="eyebrow">✨ XÂY KÊNH YOUTUBE · TIKTOK · FACEBOOK TỰ ĐỘNG — KHÔNG CẦN LỘ MẶT</span>
+        <h1 class="hero-title">
+          Biến nội dung sẵn có hoặc <span class="gold-grad">1 đường link web bất kỳ</span> thành kênh video tự động mỗi ngày.
+        </h1>
+        <p class="hero-lead">
+          Dành cho người bận rộn muốn xây kênh mang <strong>tên thương hiệu riêng</strong> mà <strong>không cần ngồi máy tính, không cần biết edit hay AI, không cần lộ mặt</strong>. Hệ thống đám mây của KenvinZone tự động biến bài viết, giáo trình khóa học hoặc bất kỳ link báo mạng nào thành video trực quan sinh động — kèm <strong>giọng đọc AI cao cấp hoặc Clone (nhân bản) chính giọng nói của bạn</strong>.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="#lienhe" class="btn btn-gold magnetic-btn">🚀 Nhận tư vấn &amp; Demo miễn phí</a>
+          <a href="#ai-phu-hop" class="btn btn-outline-light magnetic-btn">Xem giải pháp này dành cho ai</a>
+        </div>
+
+        <div class="hero-trust-strip">
+          <span>✅ <strong>Không tốn tiền</strong> mua PC / Card đồ họa / Voice TTS</span>
+          <span>✅ <strong>Setup trọn gói 100%</strong> · Phí duy trì siêu nhỏ</span>
+          <span>⚡ Duyệt bài <strong>1 chạm trên điện thoại</strong></span>
+        </div>
       </div>
-      <div class="trust">
-        <span>✅ Không cần máy tính mạnh</span>
-        <span>✅ Không cần biết kỹ thuật</span>
-        <span>⚡ Setup <b>từ A–Z</b> cho bạn</span>
+
+      <!-- Right Column: Interactive Niche Switcher + 3D Tilt Phone Studio -->
+      <div class="hero-phone-column">
+        <div class="niche-pills-bar" role="tablist" aria-label="Chọn thử chủ đề kênh của bạn">
+          <button class="niche-pill active" onclick="selectNiche(0)">📈 Tài chính · CK · Vàng · Crypto</button>
+          <button class="niche-pill" onclick="selectNiche(1)">📰 Tóm tắt Link Web / Báo</button>
+          <button class="niche-pill" onclick="selectNiche(2)">🎓 Khóa học · Giải thích</button>
+          <button class="niche-pill" onclick="selectNiche(3)">🛍️ Review Nhanh · Thương hiệu</button>
+        </div>
+
+        <div class="phone-stage-wrapper" id="phone-tilt-stage">
+          <!-- Floating Satellite Badge Left -->
+          <div class="satellite-badge sat-left" id="sat-badge-left">
+            <span style="font-size:1.1rem;">🎙️</span>
+            <div>
+              <div style="font-size:0.65rem; color:#94a3b8;">GIỌNG ĐỌC AI / CLONE</div>
+              <div style="color:var(--gold-bright);">Giọng chuẩn hoặc giọng chính bạn</div>
+            </div>
+          </div>
+
+          <!-- Floating Satellite Badge Right -->
+          <div class="satellite-badge sat-right" id="sat-badge-right">
+            <span style="font-size:1.1rem;">🙈</span>
+            <div>
+              <div style="font-size:0.65rem; color:#94a3b8;">XÂY KÊNH KHÔNG LỘ MẶT</div>
+              <div style="color:#34d399;">Đóng dấu thương hiệu riêng</div>
+            </div>
+          </div>
+
+          <!-- 9:16 Phone Mockup -->
+          <div class="phone-3d-wrap" id="hero-phone">
+            <div>
+              <div class="phone-notch"></div>
+              <div class="phone-progress-segments" aria-hidden="true">
+                <div class="phone-seg"><div class="phone-seg-fill"></div></div>
+                <div class="phone-seg"><div class="phone-seg-fill" style="animation-delay:1.5s"></div></div>
+                <div class="phone-seg"><div class="phone-seg-fill" style="animation-delay:3s"></div></div>
+                <div class="phone-seg"><div class="phone-seg-fill" style="animation-delay:4.5s"></div></div>
+              </div>
+              <div style="text-align:center;">
+                <span class="phone-status-pill" id="niche-eyebrow">BẢN TIN CHỨNG KHOÁN · VÀNG · CRYPTO</span>
+              </div>
+            </div>
+
+            <div class="phone-screen-body">
+              <div class="phone-video-headline" id="niche-title">
+                Dòng tiền đảo chiều mạnh
+                <span id="niche-sub">Tự động lên sóng 07:30 sáng</span>
+              </div>
+
+              <!-- Live Animated Chart Widget inside Phone -->
+              <div class="phone-mini-chart">
+                <div style="display:flex; justify-content:space-between; font-size:0.68rem; color:#cbd5e1; font-weight:700;">
+                  <span id="niche-metric-label">ĐỒ HỌA CHUYỂN ĐỘNG TỰ ĐỘNG</span>
+                  <span style="color:var(--emerald);" id="niche-metric-val">● MANG TÊN KÊNH CỦA BẠN</span>
+                </div>
+                <div class="mini-chart-bars">
+                  <span style="height:45%"></span>
+                  <span style="height:68%"></span>
+                  <span style="height:54%"></span>
+                  <span style="height:95%"></span>
+                  <span style="height:80%"></span>
+                </div>
+              </div>
+
+              <!-- Live Karaoke Subtitle Box -->
+              <div class="phone-karaoke-box" id="niche-karaoke">
+                “Hệ thống tự tổng hợp tin tức và <mark>dựng hiệu ứng</mark> hoàn chỉnh mỗi sáng...”
+              </div>
+
+              <div class="phone-voice-wave" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+
+            <div class="phone-approve-card" onclick="triggerPhoneApprove(this)">
+              <div>
+                <div style="font-weight:700;" id="approve-status-title">Video mới đã dựng xong!</div>
+                <div style="font-size:0.68rem; opacity:0.85;" id="approve-status-sub">Đang ở chế độ Riêng tư chờ bạn duyệt</div>
+              </div>
+              <span class="phone-approve-btn" id="approve-btn-pill">BẤM DUYỆT ✓</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="phone" aria-hidden="true">
-      <div class="notch"></div>
-      <div class="ph-cover">
-        <span class="ph-ey">Bản tin của bạn</span>
-        <div class="ph-title">Video chuyên nghiệp<span class="b">tự chạy mỗi ngày</span></div>
-        <div class="ph-chips"><i>🎙️ Giọng đọc AI tự nhiên</i><i>✨ Hiệu ứng số liệu động</i><i>📲 Tự đăng YouTube · TikTok</i></div>
+  </section>
+
+  <!-- Infinite Smooth Marquee Strip -->
+  <div class="marquee-strip" aria-label="Đối tượng phù hợp">
+    <div class="marquee-track">
+      <span class="audience-chip">👩‍💼 Nhân viên văn phòng bận việc công ty</span>
+      <span class="audience-chip">🤱 Mẹ bỉm sữa tranh thủ thời gian rảnh</span>
+      <span class="audience-chip">📈 Tin tức Tài chính · Chứng khoán · Bitcoin · Vàng</span>
+      <span class="audience-chip">🎓 Chuyên gia đưa Khóa học lên YouTube</span>
+      <span class="audience-chip">🌐 Biến Link Web / Bài báo thành Video giải thích</span>
+      <span class="audience-chip">⚡ Sản xuất hàng loạt Video Review nhanh</span>
+      <span class="audience-chip">🙈 Xây kênh YouTube / TikTok không cần lộ mặt</span>
+      <span class="audience-chip">🎙️ Clone giọng AI hoặc chính giọng của bạn</span>
+      <!-- Duplicate for seamless infinite loop -->
+      <span class="audience-chip">👩‍💼 Nhân viên văn phòng bận việc công ty</span>
+      <span class="audience-chip">🤱 Mẹ bỉm sữa tranh thủ thời gian rảnh</span>
+      <span class="audience-chip">📈 Tin tức Tài chính · Chứng khoán · Bitcoin · Vàng</span>
+      <span class="audience-chip">🎓 Chuyên gia đưa Khóa học lên YouTube</span>
+      <span class="audience-chip">🌐 Biến Link Web / Bài báo thành Video giải thích</span>
+      <span class="audience-chip">⚡ Sản xuất hàng loạt Video Review nhanh</span>
+      <span class="audience-chip">🙈 Xây kênh YouTube / TikTok không cần lộ mặt</span>
+      <span class="audience-chip">🎙️ Clone giọng AI hoặc chính giọng của bạn</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       ACT II-A: CHÂN DUNG KHÁCH HÀNG & NỖI ĐAU THỰC TẾ (ĐÁNH ĐÚNG TRỌNG TÂM)
+       ======================================================================== -->
+  <section id="ai-phu-hop" class="section-pad">
+    <div class="container">
+      <div class="section-head gsap-reveal">
+        <span class="eyebrow">CHẠM ĐÚNG NỖI ĐAU CỦA BẠN</span>
+        <h2>Bạn muốn xây kênh YouTube, Facebook, TikTok... nhưng đang mắc kẹt ở đâu?</h2>
+        <p>90% người mới bắt đầu hoặc người bận rộn đều bỏ cuộc giữa chừng không phải vì thiếu ý tưởng — mà vì kiệt sức trước quy trình làm video thủ công.</p>
       </div>
-      <div class="ph-bars"><b></b><b></b><b></b><b></b><b></b><b></b></div>
-      <div class="ph-cap">⏱️ Chuẩn Shorts · dưới 3 phút</div>
-    </div>
-  </div>
-</section>
 
-<div class="logos">
-  <div class="wrap">
-    <span class="t">Phù hợp cho:</span>
-    <span class="p">Nhà sáng tạo nội dung</span>
-    <span class="p">Doanh nghiệp &amp; thương hiệu</span>
-    <span class="p">Agency làm content</span>
-    <span class="p">TikToker · YouTuber</span>
-    <span class="p">Startup khởi nghiệp</span>
-  </div>
-</div>
+      <!-- 6 Chân dung khách hàng mục tiêu -->
+      <div class="persona-grid">
+        <div class="persona-card value-card gsap-reveal">
+          <span class="persona-tag">01 · NHÂN VIÊN VĂN PHÒNG &amp; MẸ BỈM SỮA</span>
+          <h3>👩‍💼 Muốn xây kênh nhưng hạn chế thời gian &amp; không thể ngồi máy tính nhiều</h3>
+          <p>Bạn có công việc riêng ở công ty từ sáng đến tối, hoặc là <strong>mẹ bỉm sữa</strong> muốn tranh thủ thời gian rảnh để xây kênh YouTube kiếm thêm thu nhập nhưng <strong>không thể ngồi ôm máy tính hàng giờ</strong> để cắt ghép từng giây video.</p>
+        </div>
 
-<!-- ================= PAIN / PROMISE ================= -->
-<section>
-  <div class="wrap">
-    <div class="center" style="margin-bottom:38px">
-      <span class="eyebrow">Vì sao bạn cần</span>
-      <h2 class="big">Muốn có kênh video đều đặn — nhưng vướng đủ thứ?</h2>
-    </div>
-    <div class="pp">
-      <div class="box pain">
-        <h3>😮‍💨 Nếu tự làm</h3>
-        <ul>
-          <li><span class="x">✕</span> Không có thời gian viết kịch bản, dựng hình mỗi ngày.</li>
-          <li><span class="x">✕</span> Không rành phần mềm, không biết AI hay công nghệ.</li>
-          <li><span class="x">✕</span> Thuê ê-kíp thì tốn kém, làm mãi vẫn không đều.</li>
-          <li><span class="x">✕</span> Máy yếu, render chậm, đăng bài thủ công mệt mỏi.</li>
-        </ul>
+        <div class="persona-card value-card gsap-reveal">
+          <span class="persona-tag">02 · TIN TỨC TÀI CHÍNH · CHỨNG KHOÁN · BITCOIN · VÀNG</span>
+          <h3>📊 Có nội dung cần lên sóng mỗi ngày nhưng không kịp sản xuất</h3>
+          <p>Bạn là nhà sáng tạo nội dung, chuyên gia hoặc doanh nghiệp cung cấp <strong>bản tin tài chính, chứng khoán, crypto, giá vàng, bất động sản...</strong> cần tốc độ lên bài đều đặn để xây dựng thương hiệu nhưng không đủ thời gian ngồi dựng video mỗi ngày.</p>
+        </div>
+
+        <div class="persona-card value-card gsap-reveal">
+          <span class="persona-tag">03 · KHOÁ HỌC &amp; TỔNG HỢP TỪ LINK WEB BẤT KỲ</span>
+          <h3>🎓 Có sẵn khóa học hoặc muốn biến bài báo trên mạng thành video của mình</h3>
+          <p>Bạn có nội dung <strong>khóa học cần đưa lên YouTube</strong> để quảng bá sản phẩm; hoặc bạn chuyên thu thập thông tin hay từ các trang web trên mạng và muốn <strong>biến ngay đường link đó thành video giải thích dễ hiểu, gần gũi</strong> mang tên thương hiệu/kênh của riêng bạn.</p>
+        </div>
+
+        <div class="persona-card value-card gsap-reveal">
+          <span class="persona-tag">04 · NGƯỜI MỚI TẬP TÀNH · ÍT KINH NGHIỆM EDIT</span>
+          <h3>🎬 Mới nghiên cứu xây kênh, không rành kỹ thuật dựng video &amp; ngại lộ mặt</h3>
+          <p>Bạn mới tập tành tìm hiểu về YouTube / TikTok, chưa có kinh nghiệm edit video, ngại đứng trước máy quay và muốn sở hữu một <strong>kênh video chuyên nghiệp không cần lộ mặt (Faceless)</strong>.</p>
+        </div>
+
+        <div class="persona-card value-card gsap-reveal">
+          <span class="persona-tag">05 · ĐÃ MUA AI AGENT NHƯNG TỰ MÒ VẪN TẮC</span>
+          <h3>💸 Đã tốn tiền mua tài khoản AI để tự làm thủ công nhưng “chưa đâu vào đâu”</h3>
+          <p>Bạn từng bỏ tiền mua các tài khoản AI / AI Agent về học cách làm video thủ công, nhưng công cụ rời rạc, câu lệnh phức tạp, làm ra video lỗi lên lỗi xuống — <strong>vừa tốn tiền vừa mất thời gian mà vẫn không ra được kênh hoàn chỉnh</strong>.</p>
+        </div>
+
+        <div class="persona-card value-card gsap-reveal">
+          <span class="persona-tag">06 · SẢN XUẤT HÀNG LOẠT REVIEW &amp; BẢN TIN NHANH</span>
+          <h3>⚡ Cần làm video hàng loạt dạng Review nhanh / Tóm tắt giải thích từ 1 Link</h3>
+          <p>Bạn muốn sản xuất đều đặn hàng loạt video dạng <strong>Reviews nhanh, tin tức nhanh, bản tin tóm tắt giải thích</strong> chỉ từ 1 đường link bài báo hoặc trang web bất kỳ để phủ sóng kênh YouTube của mình mỗi ngày.</p>
+        </div>
       </div>
-      <div class="box promise">
-        <h3>✨ Với KenvinZone AutoVideo</h3>
-        <ul>
-          <li><span class="v">✓</span> Hệ thống tự viết kịch bản &amp; dựng video thay bạn.</li>
-          <li><span class="v">✓</span> Bạn không cần đụng tới kỹ thuật — chúng tôi lo hết.</li>
-          <li><span class="v">✓</span> Chạy trên đám mây 24/7, không cần máy tính mạnh.</li>
-          <li><span class="v">✓</span> Video tự đăng, bạn chỉ xem &amp; bấm “duyệt”.</li>
-        </ul>
+
+      <!-- Khối "TÚM LẠI" cực kỳ rõ ràng theo đúng ý 6 của khách -->
+      <div class="tumlai-banner gsap-reveal">
+        <span class="eyebrow" style="margin-bottom:10px;">🎯 TÚM LẠI — GIẢI PHÁP NÀY SINH RA DÀNH CHO AI?</span>
+        <h3 style="font-size:clamp(1.35rem, 2.6vw, 1.95rem); font-weight:900; line-height:1.25;">
+          Dành cho bất kỳ ai <span style="color:var(--gold-bright);">đã có sẵn nội dung</span> (tự viết hoặc chỉ cần copy từ 1 đường link web bất kỳ) và muốn biến ngay nội dung đó thành <span style="color:#34d399;">Video trực quan sinh động + Giọng đọc AI / Clone chính giọng của mình</span>!
+        </h3>
+
+        <div class="tumlai-flow">
+          <div class="tumlai-node">
+            <div style="font-size:0.75rem; color:var(--gold-bright); font-weight:700; margin-bottom:4px;">ĐẦU VÀO CỰC NHÀN</div>
+            <div style="font-weight:800; font-size:1.02rem; margin-bottom:4px;">📝 Nội dung sẵn có hoặc 1 Link Web</div>
+            <div style="font-size:0.86rem; color:#cbd5e1;">Bài viết của bạn, nội dung khóa học, hoặc copy bất kỳ link bài báo/trang web nào bạn muốn.</div>
+          </div>
+
+          <div class="tumlai-arrow">➔</div>
+
+          <div class="tumlai-node">
+            <div style="font-size:0.75rem; color:#38bdf8; font-weight:700; margin-bottom:4px;">NHÀ MÁY ĐÁM MÂY 100%</div>
+            <div style="font-weight:800; font-size:1.02rem; margin-bottom:4px;">🎙️ Giọng AI / Clone + Đồ họa tự động</div>
+            <div style="font-size:0.86rem; color:#cbd5e1;">Tự biên tập lời dẫn gần gũi, lồng tiếng AI hoặc <strong>nhân bản chính giọng thật của bạn</strong>, dựng đồ họa sinh động.</div>
+          </div>
+
+          <div class="tumlai-arrow">➔</div>
+
+          <div class="tumlai-node" style="border-color:rgba(52,211,153,0.5); background:rgba(16,185,129,0.12);">
+            <div style="font-size:0.75rem; color:#34d399; font-weight:700; margin-bottom:4px;">THÀNH PHẨM LÊN KÊNH</div>
+            <div style="font-weight:800; font-size:1.02rem; margin-bottom:4px;">🏆 Video mang Thương Hiệu Của Bạn</div>
+            <div style="font-size:0.86rem; color:#e2e8f0;">Đóng dấu Logo &amp; Tên kênh riêng của bạn, tự động tải lên YouTube chờ bạn bấm “Duyệt” trên điện thoại.</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= CÁCH HOẠT ĐỘNG ================= -->
-<section id="cachhoatdong" style="background:var(--surface2)">
-  <div class="wrap">
-    <div class="center" style="margin-bottom:40px">
-      <span class="eyebrow">Đơn giản như 1-2-3-4</span>
-      <h2 class="big">Cách hoạt động</h2>
-      <p class="sub">Bạn gần như không phải làm gì — hệ thống lo phần khó, bạn giữ quyền quyết định.</p>
-    </div>
-    <div class="how">
-      <div class="s"><div class="n">01</div><div class="ic">🧭</div><h3>Chọn hướng nội dung</h3><p>Bạn cho biết làm về gì (tài chính, review, tin tức…) và nguồn dữ liệu — hoặc chỉ cần gửi một đường link.</p></div>
-      <div class="s"><div class="n">02</div><div class="ic">🤖</div><h3>Hệ thống tự dựng</h3><p>AI viết kịch bản, lồng giọng đọc tự nhiên, dựng hình hiệu ứng chuyên nghiệp — hoàn toàn tự động.</p></div>
-      <div class="s"><div class="n">03</div><div class="ic">📲</div><h3>Tự đăng kênh</h3><p>Video được đưa lên YouTube / TikTok ở chế độ chờ, đúng chuẩn Shorts dưới 3 phút.</p></div>
-      <div class="s"><div class="n">04</div><div class="ic">👍</div><h3>Bạn duyệt là xong</h3><p>Xem lại, bấm “duyệt” để công khai. Mỗi ngày hệ thống tự lặp lại — kênh luôn có bài mới.</p></div>
-    </div>
-  </div>
-</section>
+  <!-- ========================================================================
+       ACT II-B: PAIN VS PROMISE + INTERACTIVE TIME/COST SAVINGS CALCULATOR
+       ======================================================================== -->
+  <section id="loi-ich" class="section-pad" style="padding-top: 10px;">
+    <div class="container">
+      <div class="comparison-grid">
+        <div class="comp-box old-way gsap-reveal">
+          <h3>😮‍💨 Tự mày mò thủ công hoặc tự mua AI lẻ tẻ</h3>
+          <ul class="comp-list">
+            <li><span class="badge-x">✕</span> <span><strong>Tốn thời gian vô ích:</strong> Mất 3–4 tiếng mỗi ngày ngồi máy tính copy-paste, cắt ghép, căn chỉnh phụ đề.</span></li>
+            <li><span class="badge-x">✕</span> <span><strong>Mua tài khoản AI Agent về để đó:</strong> Tốn tiền mua đủ công cụ AI nhưng làm thủ công rời rạc, chưa đâu vào đâu.</span></li>
+            <li><span class="badge-x">✕</span> <span><strong>Gánh nặng chi phí phần cứng &amp; Voice:</strong> Phải sắm máy tính mạnh, Card đồ họa đắt tiền và trả phí thuê Voice TTS hàng tháng cao.</span></li>
+            <li><span class="badge-x">✕</span> <span><strong>Dễ bỏ cuộc:</strong> Đi làm về mệt hoặc bận con cái là đứt quãng lịch đăng bài, kênh mãi không lên đề xuất.</span></li>
+          </ul>
+        </div>
 
-<!-- ================= TÍNH NĂNG / GIÁ TRỊ ================= -->
-<section>
-  <div class="wrap">
-    <div class="center" style="margin-bottom:40px">
-      <span class="eyebrow">Điều làm nên khác biệt</span>
-      <h2 class="big">Chất lượng như đài truyền hình, vận hành như một nút bấm</h2>
-    </div>
-    <div class="g3">
-      <div class="card"><div class="ic">🏭</div><h3>Chạy trên đám mây 24/7</h3><p>Không cần bật máy tính, không cần văn phòng. Điều khiển từ điện thoại cũng được.</p></div>
-      <div class="card"><div class="ic">🎙️</div><h3>Giọng đọc AI tự nhiên</h3><p>Đọc đúng tên riêng, thuật ngữ. Có thể clone chính giọng của bạn để tạo dấu ấn.</p></div>
-      <div class="card"><div class="ic">✨</div><h3>Hiệu ứng chuyên nghiệp</h3><p>Số liệu chạy động, chuyển cảnh mượt, phụ đề chuẩn — nhìn như một bản tin thật.</p></div>
-      <div class="card"><div class="ic">📲</div><h3>Tự đăng YouTube &amp; TikTok</h3><p>Đúng chuẩn Shorts dưới 3 phút. Đăng đều đặn mà không cần thao tác tay.</p></div>
-      <div class="card"><div class="ic">♻️</div><h3>Nội dung gì cũng nhân bản</h3><p>Tài chính, tin tức, review sản phẩm, giáo dục, bản tin thương hiệu… mỗi loại một mẫu riêng.</p></div>
-      <div class="card"><div class="ic">✅</div><h3>Bạn chỉ cần duyệt</h3><p>Không đụng kỹ thuật, không cần biết AI. Giữ toàn quyền kiểm soát nội dung đăng lên.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= AI PHÙ HỢP ================= -->
-<section style="background:var(--surface2)">
-  <div class="wrap">
-    <div class="center" style="margin-bottom:34px">
-      <span class="eyebrow">Dành cho ai</span>
-      <h2 class="big">Ai cũng dùng được — kể cả khi “mù công nghệ”</h2>
-      <p class="sub">Nếu bạn biết bấm nút xem video, bạn quản lý được kênh của mình.</p>
-    </div>
-    <div class="who">
-      <div class="w"><span class="e">🍼</span> Mẹ bỉm sữa</div>
-      <div class="w"><span class="e">🎓</span> Sinh viên</div>
-      <div class="w"><span class="e">💼</span> Nhân viên văn phòng</div>
-      <div class="w"><span class="e">🚀</span> Startup khởi nghiệp</div>
-      <div class="w"><span class="e">📱</span> TikToker · YouTuber</div>
-      <div class="w"><span class="e">🏢</span> Doanh nghiệp &amp; thương hiệu</div>
-      <div class="w"><span class="e">🧩</span> Agency làm content</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= DỊCH VỤ A-Z ================= -->
-<section class="svc">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Bạn không phải làm một mình</span>
-      <h2 class="big">Tôi lo cho bạn từ A đến Z</h2>
-      <p class="sub">Không chỉ bán công cụ — tôi thiết lập toàn bộ hệ thống, bàn giao tận tay và đồng hành cùng bạn.</p>
-    </div>
-    <div class="steps">
-      <div class="st"><div class="n">1</div><h3>Tư vấn &amp; định hướng</h3><p>Nghe nhu cầu của bạn, chọn loại nội dung và kênh đăng phù hợp nhất.</p></div>
-      <div class="st"><div class="n">2</div><h3>Thiết lập toàn bộ</h3><p>Dựng sẵn hệ thống tự động, mẫu video riêng, kết nối kênh — tất cả cho bạn.</p></div>
-      <div class="st"><div class="n">3</div><h3>Bàn giao &amp; hướng dẫn</h3><p>Chỉ bạn cách xem và duyệt video đơn giản. Không cần kiến thức kỹ thuật.</p></div>
-      <div class="st"><div class="n">4</div><h3>Đồng hành &amp; nâng cấp</h3><p>Hỗ trợ khi cần, thêm loại nội dung mới hoặc mở rộng khi kênh của bạn lớn lên.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PROOF ================= -->
-<section class="proof">
-  <div class="wrap">
-    <div class="center" style="margin-bottom:30px">
-      <span class="eyebrow">Đã chạy thật, không phải lời hứa</span>
-      <h2 class="big">Hệ thống đang vận hành thực tế mỗi ngày</h2>
-      <p class="sub">Bộ giải pháp này hiện đang tự động sản xuất các bản tin tài chính — minh chứng sống cho những gì bạn sẽ nhận được.</p>
-    </div>
-    <div class="stats">
-      <div class="stat"><div class="v">7</div><div class="l">dây chuyền video tự động</div></div>
-      <div class="stat"><div class="v">&lt;3′</div><div class="l">mỗi video, chuẩn Shorts</div></div>
-      <div class="stat"><div class="v">0</div><div class="l">máy tính phải bật 24/7</div></div>
-      <div class="stat"><div class="v">24/7</div><div class="l">chạy tự động trên cloud</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FAQ ================= -->
-<section>
-  <div class="wrap">
-    <div class="center" style="margin-bottom:36px">
-      <span class="eyebrow">Giải đáp nhanh</span>
-      <h2 class="big">Câu hỏi thường gặp</h2>
-    </div>
-    <div class="faq">
-      <details open><summary>Tôi không rành công nghệ hay AI, có dùng được không?</summary><p>Hoàn toàn được — đây chính là điều chúng tôi làm tốt nhất. Tôi thiết lập mọi thứ cho bạn; việc của bạn chỉ là xem video và bấm “duyệt”. Nếu bạn biết dùng điện thoại, bạn quản lý được kênh của mình.</p></details>
-      <details><summary>Tôi có cần máy tính mạnh hay phần mềm gì không?</summary><p>Không. Toàn bộ chạy trên đám mây. Bạn không cần cài gì, không cần máy khỏe, thậm chí điều khiển từ điện thoại cũng được.</p></details>
-      <details><summary>Làm được những loại nội dung nào?</summary><p>Gần như bất kỳ: bản tin tài chính, tin tức, review sản phẩm, nội dung giáo dục, bản tin thương hiệu… Mỗi loại được thiết kế một mẫu video riêng cho đẹp và phù hợp.</p></details>
-      <details><summary>Video có bị giống nhau, nhàm chán không?</summary><p>Không. Mỗi loại có mẫu thiết kế riêng, số liệu và hình ảnh thay đổi theo nội dung, giọng đọc tự nhiên — nhìn chuyên nghiệp như một bản tin thật.</p></details>
-      <details><summary>Chi phí thế nào?</summary><p>Báo giá theo từng dự án và nhu cầu thực tế của bạn, để bạn không phải trả cho những thứ không cần. Hãy liên hệ để được tư vấn và báo giá cụ thể.</p></details>
-      <details><summary>Bao lâu thì kênh của tôi bắt đầu chạy?</summary><p>Tùy loại nội dung, nhưng phần thiết lập thường gọn gàng. Sau khi bàn giao, hệ thống chạy tự động và bạn chỉ cần duyệt.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section class="contact" id="lienhe">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Bắt đầu ngay hôm nay</span>
-      <h2 class="big" style="color:var(--ink-fg)">Để tôi dựng kênh video tự động cho bạn</h2>
-      <p class="sub">Nhận tư vấn miễn phí. Chỉ cần cho tôi biết bạn muốn làm nội dung gì.</p>
-    </div>
-    <div class="cgrid">
-      <div class="channels">
-        <!-- SỬA: thay bằng số Zalo/điện thoại thật của anh -->
-        <div class="ch"><span class="e">💬</span><div><div class="l">Zalo / Điện thoại</div><div class="v" id="v-phone">09xx xxx xxx</div></div><button class="copybtn" data-copy="#v-phone">Sao chép</button></div>
-        <!-- SỬA: thay bằng email thật của anh -->
-        <div class="ch"><span class="e">✉️</span><div><div class="l">Email</div><div class="v" id="v-email">email@kenvinzone.com</div></div><button class="copybtn" data-copy="#v-email">Sao chép</button></div>
-        <div class="ch"><span class="e">🌐</span><div><div class="l">Website</div><div class="v">kenvinzone.com</div></div></div>
-        <p style="color:var(--ink-muted);font-size:.86rem;margin-top:4px">Phản hồi trong vòng 24 giờ. Tư vấn hoàn toàn miễn phí, không ràng buộc.</p>
+        <div class="comp-box new-way gsap-reveal">
+          <h3>✨ Sở hữu hệ thống tự động KenvinZone</h3>
+          <ul class="comp-list">
+            <li><span class="badge-v">✓</span> <span><strong>Không tốn tiền Phần cứng &amp; Voice đắt đỏ:</strong> Chạy 100% trên Đám mây — không cần máy tính khỏe, không cần Card đồ họa, tích hợp sẵn giọng đọc AI &amp; Clone giọng cực chuẩn.</span></li>
+            <li><span class="badge-v">✓</span> <span><strong>KenvinZone cài đặt trọn gói 100% từ A–Z:</strong> Bạn chỉ mất 1 khoản phí công cài đặt giải pháp ban đầu, nhận bàn giao hệ thống đã chạy mượt.</span></li>
+            <li><span class="badge-v">✓</span> <span><strong>Chi phí duy trì hàng tháng rất rất nhỏ:</strong> Không tốn kém như thuê nhân sự hay mua hàng chục gói phần mềm, cực kỳ nhẹ nhàng để nuôi kênh lâu dài.</span></li>
+            <li><span class="badge-v">✓</span> <span><strong>Xây kênh online không cần lộ mặt:</strong> Chỉ cần gửi 1 link web hoặc duyệt bài trên điện thoại là kênh lên video đều đặn mỗi ngày.</span></li>
+          </ul>
+        </div>
       </div>
-      <form id="leadform" novalidate>
-        <div><label for="f-name">Tên của bạn</label><input id="f-name" name="name" placeholder="Nguyễn Văn A" autocomplete="name"></div>
-        <div><label for="f-need">Bạn muốn làm nội dung gì?</label><textarea id="f-need" name="need" rows="3" placeholder="Ví dụ: kênh TikTok review mỹ phẩm, đăng mỗi ngày…"></textarea></div>
-        <div><label for="f-contact">Zalo / SĐT / Email của bạn</label><input id="f-contact" name="contact" placeholder="Để tôi liên hệ lại"></div>
-        <button class="btn primary block" type="submit">Gửi yêu cầu tư vấn</button>
-        <div class="result" id="formresult" hidden></div>
-      </form>
+
+      <!-- Interactive Time & Effort Calculator -->
+      <div class="savings-calculator gsap-reveal">
+        <div>
+          <span class="eyebrow" style="margin-bottom:8px;">ƯỚC TÍNH HIỆU QUẢ THỰC TẾ</span>
+          <h3 style="font-size: 1.45rem; font-weight: 800; margin-bottom: 8px;">Bạn muốn kênh đăng bao nhiêu video mỗi tuần?</h3>
+          <p style="color: var(--ink-secondary); font-size: 0.95rem; margin-bottom: 18px;">
+            Kéo thanh trượt để xem thời gian ngồi máy tính bạn tiết kiệm được khi chuyển sang dây chuyền đám mây KenvinZone:
+          </p>
+          <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:8px;">
+            <span>Số lượng video mong muốn:</span>
+            <span id="calc-vids-label" style="color: var(--gold); font-size: 1.15rem;">7 video / tuần (Mỗi ngày 1 bài)</span>
+          </div>
+          <input type="range" id="calc-vids-range" min="3" max="21" value="7" style="width:100%; accent-color: var(--gold); cursor:pointer;" oninput="updateSavingsCalc()" />
+        </div>
+
+        <div class="calc-outcome-grid">
+          <div class="calc-stat-box">
+            <div class="calc-stat-num" id="calc-hours-saved">~90 giờ</div>
+            <div style="font-size:0.86rem; color:var(--ink-secondary); font-weight:600;">Không phải ngồi máy tính / tháng</div>
+          </div>
+          <div class="calc-stat-box">
+            <div class="calc-stat-num" id="calc-vids-month">30 video</div>
+            <div style="font-size:0.86rem; color:var(--ink-secondary); font-weight:600;">Tự động lên kênh / tháng</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Định vị minh bạch: Phù hợp Video ngắn thông tin vs Phim ngắn / Hoạt hình phức tạp (Điểm 5) -->
+      <div class="scope-notice-grid gsap-reveal">
+        <div class="scope-card fit">
+          <span class="eyebrow" style="background:rgba(16,185,129,0.15); color:var(--emerald); border-color:rgba(16,185,129,0.4); margin-bottom:10px;">
+            ✅ ĐỊNH VỊ RÕ RÀNG · DÒNG VIDEO PHÙ HỢP NHẤT TRÊN ĐÁM MÂY
+          </span>
+          <h3 style="font-size:1.22rem; font-weight:800; margin-bottom:10px;">
+            Tối ưu hoàn hảo cho Video Ngắn Thông Tin · Giải Thích · Bản Tin · Review
+          </h3>
+          <p style="color:var(--ink-secondary); font-size:0.95rem;">
+            Hệ thống đám mây (Cloud 100% không dùng máy tính) này được thiết kế chuyên biệt để sản xuất hàng loạt <strong>video ngắn trực quan sinh động</strong>: Bản tin Tài chính – Chứng khoán – Bitcoin – Vàng, Tóm tắt &amp; giải thích từ 1 link bài báo bất kỳ, Video chia sẻ kiến thức khóa học, hoặc Review nhanh sản phẩm mang thương hiệu kênh của bạn.
+          </p>
+        </div>
+
+        <div class="scope-card not-fit">
+          <span class="eyebrow" style="background:rgba(124,133,155,0.15); color:var(--ink-secondary); border-color:var(--border-strong); margin-bottom:10px;">
+            🎬 LƯU Ý VỀ PHIM NGẮN &amp; PHIM HOẠT HÌNH PHỨC TẠP
+          </span>
+          <h3 style="font-size:1.15rem; font-weight:800; margin-bottom:10px;">
+            Cần làm Phim ngắn điện ảnh hay Hoạt hình chuyên sâu?
+          </h3>
+          <p style="color:var(--ink-secondary); font-size:0.93rem;">
+            Các dạng video phức tạp như <strong>Làm Phim ngắn hay Phim hoạt hình 3D</strong> đòi hỏi xử lý chuyên sâu nên không thể thực hiện thuần trên Cloud (bắt buộc phải có <strong>Hệ thống Máy tính + Server + thuê API phức tạp hơn</strong>). Với dòng video này, <strong>KenvinZone sẽ chia sẻ trong bộ giải pháp khác</strong> (cài đặt phần mềm chuyên sâu trên máy tính) nếu bạn có nhu cầu!
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap">
-    <div><b>KenvinZone AutoVideo</b> — Bộ giải pháp sản xuất video tự động trên đám mây.</div>
-    <div>© 2026 KenvinZone · Thiết lập &amp; vận hành bởi đội ngũ KenvinZone</div>
-  </div>
-</footer>
+  <!-- ========================================================================
+       ACT III: SCROLL-TRIGGERED 1-2-3-4 STORYBOARD
+       (Cuộn chuột tới bước nào, màn hình bên phải tự động chuyển cảnh bước đó!)
+       ======================================================================== -->
+  <section id="cach-hoat-dong" class="storyboard-section">
+    <div class="container">
+      <div class="section-head gsap-reveal">
+        <span class="eyebrow">ĐƠN GIẢN NHƯ ĐỌC TIN NHẮN</span>
+        <h2>Cách hoạt động chỉ với 4 bước</h2>
+        <p>Cuộn trang xuống (hoặc chạm vào từng bước) để xem cách hệ thống tự động hóa hoàn toàn công việc của bạn.</p>
+      </div>
 
-<script src="assets/app.js"></script>
+      <div class="storyboard-split">
+        <div class="step-cards-stack">
+          <div class="journey-card active" data-step="0" onclick="selectJourneyStep(0)">
+            <div class="journey-step-num">BƯỚC 01 · ĐẦU VÀO ĐƠN GIẢN</div>
+            <h3>🧭 Chọn chủ đề hoặc gửi 1 đường link</h3>
+            <p>Bạn chỉ cần gửi đường link bài viết/sản phẩm muốn làm vào khung chat trên điện thoại — hoặc đặt lịch cố định để hệ thống tự lấy tin tức, số liệu mới mỗi ngày.</p>
+          </div>
 
+          <div class="journey-card" data-step="1" onclick="selectJourneyStep(1)">
+            <div class="journey-step-num">BƯỚC 02 · SẢN XUẤT TỰ ĐỘNG TRÊN MÂY</div>
+            <h3>🎬 Nhà máy AI tự viết kịch bản &amp; dựng hình</h3>
+            <p>Hệ thống tự tóm tắt ý chính, lồng giọng đọc truyền cảm (có thể dùng chính giọng của bạn), ghép hiệu ứng chuyển động và phụ đề sắc nét như bản tin truyền hình.</p>
+          </div>
+
+          <div class="journey-card" data-step="2" onclick="selectJourneyStep(2)">
+            <div class="journey-step-num">BƯỚC 03 · TẢI LÊN CHẾ ĐỘ CHỜ DUYỆT</div>
+            <h3>📲 Tự động đưa lên kênh ở chế độ Riêng tư</h3>
+            <p>Video hoàn chỉnh (chuẩn dọc dưới 3 phút) được tải thẳng lên kênh YouTube / TikTok của bạn ở chế độ <strong>Riêng tư (Private)</strong> và báo tin nhắn cho bạn.</p>
+          </div>
+
+          <div class="journey-card" data-step="3" onclick="selectJourneyStep(3)">
+            <div class="journey-step-num">BƯỚC 04 · BẠN BẤM DUYỆT LÀ LÊN SÓNG</div>
+            <h3>👍 Xem lại trên điện thoại &amp; nhắn “Duyệt”</h3>
+            <p>Bạn mở điện thoại xem thử video. Khi ưng ý, chỉ cần nhắn chữ <strong>“Duyệt”</strong> là video tự động chuyển sang Công khai. Không cần mở máy tính dù chỉ 1 phút!</p>
+          </div>
+        </div>
+
+        <!-- Sticky Visual Screen that updates dynamically on Scroll & Click -->
+        <div class="journey-visual-sticky" id="journey-preview-box">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gold-bright); font-weight:700;" id="jv-step-tag">
+              MÔ PHỎNG THAO TÁC · BƯỚC 01 / 04
+            </span>
+            <div class="jv-step-dots">
+              <span class="jv-dot active"></span>
+              <span class="jv-dot"></span>
+              <span class="jv-dot"></span>
+              <span class="jv-dot"></span>
+            </div>
+          </div>
+
+          <div class="jv-stage-box" id="jv-stage-content">
+            <div style="font-size:2.4rem; margin-bottom:10px;">💬</div>
+            <h4 style="font-size:1.3rem; margin-bottom:8px;">Bạn gửi 1 đường link (hoặc để lịch tự chạy)</h4>
+            <p style="color:#cbd5e1; font-size:0.95rem;">
+              Chỉ cần copy đường link bài viết hoặc sản phẩm gửi vào khung chat trợ lý — hoặc hẹn giờ cố định để hệ thống tự động làm việc mỗi sáng.
+            </p>
+            <div class="jv-mock-ui">
+              <div style="color:#94a3b8; font-size:0.72rem; margin-bottom:4px;">TIN NHẮN CỦA BẠN (07:30 SÁNG):</div>
+              <div style="color:#fde68a; font-weight:600;">“Làm giúp mình video từ bài tin tức thị trường hôm nay nhé!”</div>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; font-size:0.82rem; color:#94a3b8;">
+            <span id="jv-time-badge">⚡ Thời gian bạn bỏ ra: <strong>~10 giây</strong></span>
+            <span>🔒 Bảo mật kênh tuyệt đối</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ACT IV: 6 SPOTLIGHT CARDS & TURNKEY A–Z SERVICE
+       ======================================================================== -->
+  <section id="khac-biet" class="section-pad">
+    <div class="container">
+      <div class="section-head gsap-reveal">
+        <span class="eyebrow">ƯU THẾ CHI PHÍ &amp; CÔNG NGHỆ VƯỢT TRỘI</span>
+        <h2>Không tốn tiền mua PC mạnh, không cần lộ mặt, chi phí duy trì siêu nhỏ</h2>
+        <p>Mọi rào cản về phần cứng, phần mềm và kỹ năng dựng phim đều được giải quyết trọn gói trên đám mây KenvinZone.</p>
+      </div>
+
+      <div class="bento-values" id="spotlight-grid">
+        <div class="value-card gsap-reveal">
+          <div class="value-icon">💻</div>
+          <h3>0đ Chi phí Máy tính &amp; Card đồ họa</h3>
+          <p>Toàn bộ quá trình dựng hình chạy trên Đám mây 24/7. Bạn <strong>không cần đầu tư máy tính khỏe, không cần Card đồ họa (VGA) đắt tiền</strong> hay bật máy canh xuất file.</p>
+        </div>
+        <div class="value-card gsap-reveal">
+          <div class="value-icon">🎙️</div>
+          <h3>Giọng AI chuẩn &amp; Clone giọng chính bạn</h3>
+          <p>Không tốn tiền thuê các gói Voice TTS đắt đỏ hàng tháng. Có sẵn giọng đọc AI truyền cảm hoặc <strong>nhân bản (Clone) chính giọng nói thật của bạn</strong> cho toàn bộ video.</p>
+        </div>
+        <div class="value-card gsap-reveal">
+          <div class="value-icon">🔗</div>
+          <h3>Copy 1 Link Web ➔ Ra Video Giải Thích</h3>
+          <p>Chỉ cần gửi 1 đường link bài báo/trang web bất kỳ hoặc nội dung khóa học sẵn có, hệ thống tự tóm tắt và biến thành <strong>video giải thích dễ hiểu, gần gũi</strong> cho cộng đồng.</p>
+        </div>
+        <div class="value-card gsap-reveal">
+          <div class="value-icon">🙈</div>
+          <h3>Xây kênh Online không cần lộ mặt</h3>
+          <p>Cực kỳ phù hợp với nhân viên văn phòng, mẹ bỉm sữa hay chuyên gia ngại đứng trước ống kính nhưng vẫn muốn có kênh YouTube / TikTok uy tín.</p>
+        </div>
+        <div class="value-card gsap-reveal">
+          <div class="value-icon">🏷️</div>
+          <h3>Đóng dấu Thương hiệu &amp; Tên kênh riêng</h3>
+          <p>Mỗi khách hàng được thiết kế bố cục màu sắc, Logo và phong cách riêng — mọi video xuất ra đều <strong>mang tên thương hiệu của bạn / kênh của bạn</strong>.</p>
+        </div>
+        <div class="value-card gsap-reveal">
+          <div class="value-icon">💰</div>
+          <h3>Setup 1 lần · Phí duy trì rất rất nhỏ</h3>
+          <p>Chỉ mất tiền công cài đặt giải pháp ban đầu (KenvinZone setup 100% từ A–Z). <strong>Chi phí duy trì hàng tháng cực kỳ nhỏ</strong>, ai cũng duy trì lâu dài được.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Turnkey A-Z Service Band -->
+  <section id="dich-vu-az" class="turnkey-band">
+    <div class="container">
+      <div class="section-head gsap-reveal" style="margin-bottom:20px;">
+        <span class="eyebrow">DỊCH VỤ CHÌA KHÓA TRAO TAY</span>
+        <h2 style="color:#fff;">Bạn không phải tự mày mò — KenvinZone cài đặt 100% từ A đến Z</h2>
+        <p style="color:var(--ink-on-dark-muted);">
+          Đừng tốn thêm tiền mua các tài khoản AI Agent rời rạc về tự học rồi bỏ xó. Chúng tôi thiết lập hoàn chỉnh dây chuyền cho riêng kênh của bạn và bàn giao khi nó đã chạy mượt mà.
+        </p>
+      </div>
+
+      <div class="turnkey-grid">
+        <div class="turnkey-step gsap-reveal">
+          <div class="turnkey-num">1</div>
+          <h3>Tư vấn &amp; Định hướng</h3>
+          <p>Lắng nghe ngành hàng của bạn, tư vấn kịch bản, tần suất đăng và phong cách hình ảnh thu hút khách hàng mục tiêu nhất.</p>
+        </div>
+        <div class="turnkey-step gsap-reveal">
+          <div class="turnkey-num">2</div>
+          <h3>Thiết lập Trọn gói</h3>
+          <p>Đội ngũ kỹ thuật dựng toàn bộ dây chuyền đám mây, thiết kế mẫu video độc quyền, cài đặt giọng đọc và kết nối kênh an toàn.</p>
+        </div>
+        <div class="turnkey-step gsap-reveal">
+          <div class="turnkey-num">3</div>
+          <h3>Nghiệm thu &amp; Bàn giao</h3>
+          <p>Sản xuất video thực tế ngay trên kênh của bạn ở chế độ Riêng tư. Hướng dẫn bạn cách bấm duyệt trên điện thoại chỉ trong 5 phút.</p>
+        </div>
+        <div class="turnkey-step gsap-reveal">
+          <div class="turnkey-num">4</div>
+          <h3>Đồng hành &amp; Mở rộng</h3>
+          <p>Hỗ trợ xuyên suốt quá trình vận hành, tinh chỉnh mẫu theo chiến dịch mới hoặc nhân bản thêm nhiều kênh khi bạn mở rộng kinh doanh.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Numbers -->
+  <section class="proof-bar">
+    <div class="container proof-grid">
+      <div>
+        <div class="proof-num">07+</div>
+        <div class="proof-label">Dây chuyền đang chạy thực tế mỗi ngày</div>
+      </div>
+      <div>
+        <div class="proof-num">&lt; 3 Phút</div>
+        <div class="proof-label">Thời lượng chuẩn Shorts &amp; TikTok</div>
+      </div>
+      <div>
+        <div class="proof-num">0 Máy Tính</div>
+        <div class="proof-label">Phải bật canh render ở nhà hay văn phòng</div>
+      </div>
+      <div>
+        <div class="proof-num">1 Chạm</div>
+        <div class="proof-label">Để duyệt và công khai video từ điện thoại</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       ACT V: NON-TECH FAQ & LEAD FORM
+       ======================================================================== -->
+  <section id="faq" class="section-pad">
+    <div class="container">
+      <div class="section-head gsap-reveal">
+        <span class="eyebrow">GIẢI ĐÁP THẮC MẮC</span>
+        <h2>Câu hỏi thường gặp</h2>
+      </div>
+
+      <div class="faq-wrap">
+        <details class="faq-item" open>
+          <summary>Tôi là nhân viên văn phòng / mẹ bỉm sữa, mới tập tành và không biết edit video thì có dùng được không?</summary>
+          <p>Hoàn toàn được! Toàn bộ phần kỹ thuật và thiết kế mẫu video đã được KenvinZone cài đặt sẵn 100% trên đám mây. Bạn không cần ngồi máy tính cắt ghép, không cần lộ mặt — chỉ cần gửi nội dung hoặc đường link bài viết qua điện thoại và bấm “Duyệt” khi video làm xong.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Tôi đã từng mua tài khoản AI Agent về tự học làm video nhưng rối quá, giải pháp này khác gì?</summary>
+          <p>Khi bạn tự mua các công cụ AI lẻ tẻ, bạn vẫn phải tự viết câu lệnh, tự ghép âm thanh, tự dựng hình thủ công rất mất thời gian. Còn với KenvinZone AutoVideo, chúng tôi ráp nối sẵn toàn bộ thành một <strong>dây chuyền tự động khép kín</strong> — bạn chỉ đưa đầu vào (bài viết hoặc 1 link web bất kỳ) là nhận ngay video hoàn chỉnh mang thương hiệu kênh của bạn.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Tôi có cần đầu tư máy tính mạnh, Card đồ họa hay tốn tiền thuê Voice TTS đắt đỏ không?</summary>
+          <p>Không cần! Hệ thống vận hành 100% trên Đám mây (Cloud) nên bạn không tốn 1 đồng nào cho máy tính hay Card đồ họa. Giải pháp cũng đã tối ưu sẵn giọng đọc AI tự nhiên hoặc <strong>Clone (nhân bản) chính giọng của bạn</strong> mà không phải trả phí thuê Voice TTS đắt đỏ hàng tháng.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Hệ thống này có làm được Phim ngắn điện ảnh hay Phim hoạt hình 3D phức tạp không?</summary>
+          <p>Hệ thống Cloud này được thiết kế tối ưu cho <strong>video ngắn trực quan sinh động</strong> (Bản tin Tài chính/Chứng khoán/Bitcoin/Vàng, Tóm tắt &amp; giải thích từ link bài báo, Video khóa học, Review nhanh...). Các dòng <strong>Phim ngắn hay Phim hoạt hình phức tạp</strong> đòi hỏi Hệ thống Máy tính vật lý + Server + thuê API chuyên sâu nên không chạy thuần trên Cloud được — nếu bạn cần làm dòng phim này, KenvinZone sẽ tư vấn cho bạn trong một <strong>bộ giải pháp cài đặt phần mềm chuyên sâu trên máy tính</strong> riêng biệt.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Chi phí cài đặt ban đầu và chi phí duy trì hàng tháng như thế nào?</summary>
+          <p>Bạn chỉ mất <strong>tiền công cài đặt &amp; setup giải pháp công nghệ ban đầu</strong> (do KenvinZone thực hiện trọn gói 100% từ A–Z). Còn <strong>chi phí duy trì hàng tháng rất rất nhỏ</strong>, hầu như không đáng kể, giúp bất kỳ ai muốn xây dựng kênh YouTube online không cần lộ mặt đều có thể theo đuổi bền vững.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="lienhe" class="contact-section">
+    <div class="container">
+      <div class="section-head gsap-reveal" style="margin-bottom:12px;">
+        <span class="eyebrow">BẮT ĐẦU NGAY HÔM NAY</span>
+        <h2 style="color:#fff;">Để KenvinZone dựng nhà máy video tự động cho riêng bạn</h2>
+        <p style="color:var(--ink-on-dark-muted);">
+          Nhận tư vấn 1-1 và xem video mẫu miễn phí. Chỉ cần cho chúng tôi biết bạn muốn xây dựng kênh về chủ đề gì!
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div>
+          <!-- Thông tin liên hệ chính thức của KenvinZone -->
+          <div class="contact-card-item">
+            <span class="icon">💬</span>
+            <div>
+              <div class="meta-label">Zalo / WhatsApp / Hotline Tư Vấn</div>
+              <div class="meta-val" id="val-phone">0937062688</div>
+            </div>
+            <button class="copy-pill" onclick="copyText('val-phone', this)">Sao chép</button>
+          </div>
+
+          <div class="contact-card-item">
+            <span class="icon">✈️</span>
+            <div>
+              <div class="meta-label">Telegram Hỗ Trợ Trực Tiếp</div>
+              <div class="meta-val" id="val-tele">
+                <a href="https://t.me/kenvinzone" target="_blank" rel="noopener" style="text-decoration:underline; text-decoration-color:rgba(245,193,66,0.5);">@kenvinzone</a>
+                <span style="color:var(--ink-on-dark-muted); font-weight:500;"> / </span>
+                <a href="https://t.me/KenvinHoang" target="_blank" rel="noopener" style="text-decoration:underline; text-decoration-color:rgba(245,193,66,0.5);">@KenvinHoang</a>
+              </div>
+            </div>
+            <button class="copy-pill" onclick="copyText('val-tele', this)">Sao chép</button>
+          </div>
+
+          <div class="contact-card-item">
+            <span class="icon">✉️</span>
+            <div>
+              <div class="meta-label">Email Hỗ Trợ &amp; Báo Giá</div>
+              <div class="meta-val" id="val-email">kenvinzone@gmail.com</div>
+            </div>
+            <button class="copy-pill" onclick="copyText('val-email', this)">Sao chép</button>
+          </div>
+
+          <div class="contact-card-item">
+            <span class="icon">🌐</span>
+            <div>
+              <div class="meta-label">Hệ Sinh Thái KenvinZone</div>
+              <div class="meta-val">autovideo.kenvinzone.com</div>
+            </div>
+          </div>
+
+          <p style="color:var(--ink-on-dark-muted); font-size:0.88rem; margin-top:12px;">
+            ⚡ Phản hồi nhanh trong vòng 24 giờ · Tư vấn định hướng kênh hoàn toàn miễn phí.
+          </p>
+        </div>
+
+        <form class="lead-form-box" id="customer-lead-form" onsubmit="handleLeadSubmit(event)">
+          <div class="form-field">
+            <label for="c-name">Tên của bạn / Tên kênh mong muốn</label>
+            <input type="text" id="c-name" placeholder="Ví dụ: Chị Lan (Văn phòng) / Kênh Tài Chính Mỗi Ngày" required />
+          </div>
+          <div class="form-field">
+            <label for="c-niche">Bạn thuộc nhóm nhu cầu nào dưới đây?</label>
+            <select id="c-niche">
+              <option value="Tin tức Tài chính / Chứng khoán / Bitcoin / Vàng">Tin tức Tài chính / Chứng khoán / Bitcoin / Vàng</option>
+              <option value="Tổng hợp từ Link Web / Bài báo thành Video giải thích">Tổng hợp từ Link Web / Bài báo thành Video giải thích</option>
+              <option value="Nhân viên văn phòng / Mẹ bỉm sữa xây kênh không lộ mặt">Nhân viên văn phòng / Mẹ bỉm sữa xây kênh không lộ mặt</option>
+              <option value="Chuyển nội dung Khóa học / Đào tạo lên YouTube">Chuyển nội dung Khóa học / Đào tạo lên YouTube</option>
+              <option value="Sản xuất hàng loạt Video Review nhanh / Thương hiệu">Sản xuất hàng loạt Video Review nhanh / Thương hiệu</option>
+              <option value="Nhu cầu khác (sẽ mô tả thêm)">Nhu cầu khác</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="c-need">Mô tả ngắn mong muốn của bạn</label>
+            <textarea id="c-need" rows="3" placeholder="Ví dụ: Mình có sẵn các link bài báo muốn biến thành video giải thích mỗi ngày, dùng giọng đọc Clone của mình..."></textarea>
+          </div>
+          <div class="form-field">
+            <label for="c-contact">Số Zalo / WhatsApp hoặc Telegram của bạn</label>
+            <input type="text" id="c-contact" placeholder="090x xxx xxx hoặc @username" required />
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%;">
+            ✨ Tạo yêu cầu tư vấn ngay
+          </button>
+
+          <div id="lead-result-box" class="composed-result" hidden></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#050811; color:#8492b0; border-top:1px solid rgba(255,255,255,0.08); padding:28px 0; font-size:0.86rem;">
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <div><strong style="color:#fff;">KenvinZone AutoVideo</strong> — Giải pháp xây dựng kênh video tự động trên đám mây.</div>
+      <div>© 2026 KenvinZone · Thiết lập trọn gói &amp; đồng hành từ A–Z</div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       INTERACTIVE MOTION & UX ENGINE
+       ======================================================================== -->
+  <script>
+    // 1. Live Niche Switcher in Hero Phone
+    const NICHES = [
+      {
+        eyebrow: "BẢN TIN CHỨNG KHOÁN · VÀNG · CRYPTO",
+        title: "Giá Vàng & Bitcoin biến động mạnh",
+        sub: "Tự động lên sóng 07:30 sáng",
+        metricLabel: "ĐỒ HỌA SỐ LIỆU TỰ ĐỘNG",
+        metricVal: "● MANG TÊN KÊNH CỦA BẠN",
+        karaoke: "“Hệ thống tự tổng hợp tin tức và <mark>lồng giọng đọc</mark> hoàn chỉnh mỗi sáng...”"
+      },
+      {
+        eyebrow: "TÓM TẮT TỪ 1 LINK BÀI BÁO BẤT KỲ",
+        title: "Giải thích dễ hiểu trong 90 giây",
+        sub: "Chỉ cần copy gửi 1 đường link web",
+        metricLabel: "BIẾN BÀI BÁO THÀNH VIDEO",
+        metricVal: "● GIỌNG AI / CLONE TỰ NHIÊN",
+        karaoke: "“Chỉ từ một đường link bài viết, hệ thống <mark>tự tóm tắt</mark> gần gũi cho cộng đồng...”"
+      },
+      {
+        eyebrow: "CHUYỂN KHÓA HỌC LÊN YOUTUBE",
+        title: "Bài 05: Tư duy đầu tư bền vững",
+        sub: "Quảng bá khóa học & thương hiệu",
+        metricLabel: "CLONE CHÍNH GIỌNG CỦA BẠN",
+        metricVal: "● KHÔNG CẦN NGỒI MÁY QUAY",
+        karaoke: "“Biến giáo trình sẵn có thành <mark>video bài giảng</mark> sinh động thu hút học viên...”"
+      },
+      {
+        eyebrow: "REVIEW NHANH · XÂY KÊNH KHÔNG LỘ MẶT",
+        title: "Top 3 điểm đáng tiền nhất",
+        sub: "Sản xuất hàng loạt mỗi ngày",
+        metricLabel: "ĐÓNG DẤU LOGO RIÊNG",
+        metricVal: "● KHÔNG TỐN TIỀN MUA PC",
+        karaoke: "“Phù hợp cho nhân viên văn phòng và <mark>mẹ bỉm sữa</mark> bận rộn xây kênh...”"
+      }
+    ];
+
+    function selectNiche(idx) {
+      document.querySelectorAll('.niche-pill').forEach((b, i) => b.classList.toggle('active', i === idx));
+      const d = NICHES[idx];
+      const phoneHeadline = document.getElementById('niche-title');
+      phoneHeadline.style.opacity = '0';
+      phoneHeadline.style.transform = 'translateY(6px)';
+
+      setTimeout(() => {
+        document.getElementById('niche-eyebrow').textContent = d.eyebrow;
+        phoneHeadline.innerHTML = `${d.title}<span id="niche-sub">${d.sub}</span>`;
+        document.getElementById('niche-metric-label').textContent = d.metricLabel;
+        document.getElementById('niche-metric-val').textContent = d.metricVal;
+        document.getElementById('niche-karaoke').innerHTML = d.karaoke;
+        phoneHeadline.style.opacity = '1';
+        phoneHeadline.style.transform = 'translateY(0)';
+      }, 150);
+    }
+
+    // Interactive "Bấm Duyệt" Micro-Interaction inside Hero Phone
+    function triggerPhoneApprove(card) {
+      const title = document.getElementById('approve-status-title');
+      const sub = document.getElementById('approve-status-sub');
+      const pill = document.getElementById('approve-btn-pill');
+
+      title.textContent = "🎉 Đã công khai lên kênh!";
+      sub.textContent = "Video đã phát sóng trên YouTube & TikTok";
+      pill.textContent = "ĐÃ DUYỆT ✓";
+      card.style.background = "rgba(245, 193, 66, 0.25)";
+      card.style.borderColor = "var(--gold-bright)";
+
+      setTimeout(() => {
+        title.textContent = "Video mới đã dựng xong!";
+        sub.textContent = "Đang ở chế độ Riêng tư chờ bạn duyệt";
+        pill.textContent = "BẤM DUYỆT ✓";
+        card.style.background = "";
+        card.style.borderColor = "";
+      }, 2800);
+    }
+
+    // 2. 3D Mouse-Tracking Tilt on Hero Phone Stage
+    const heroSection = document.getElementById('hero-section');
+    const phoneCard = document.getElementById('hero-phone');
+    const satLeft = document.getElementById('sat-badge-left');
+    const satRight = document.getElementById('sat-badge-right');
+
+    if (heroSection && phoneCard) {
+      heroSection.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 960) return;
+        const rect = heroSection.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        phoneCard.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 12}deg)`;
+        if (satLeft) satLeft.style.transform = `translate3d(${x * -22}px, ${y * -18}px, 30px)`;
+        if (satRight) satRight.style.transform = `translate3d(${x * 26}px, ${y * 20}px, 40px)`;
+      });
+
+      heroSection.addEventListener('mouseleave', () => {
+        phoneCard.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      });
+    }
+
+    // 3. Mouse-Tracking Radial Spotlight on Value Cards
+    document.querySelectorAll('.value-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+      });
+    });
+
+    // 4. Interactive Time & Effort Savings Calculator
+    function updateSavingsCalc() {
+      const vidsPerWeek = parseInt(document.getElementById('calc-vids-range').value, 10);
+      const vidsPerMonth = Math.round(vidsPerWeek * 4.3);
+      const hoursSaved = vidsPerMonth * 3;
+
+      document.getElementById('calc-vids-label').textContent = `${vidsPerWeek} video / tuần (~${vidsPerMonth} bài/tháng)`;
+      document.getElementById('calc-hours-saved').textContent = `~${hoursSaved} giờ`;
+      document.getElementById('calc-vids-month').textContent = `${vidsPerMonth} video`;
+    }
+
+    // 5. 1-2-3-4 Customer Journey Storyboard Interactive + Scroll-Triggered Switcher
+    const JOURNEY_STEPS = [
+      {
+        tag: "MÔ PHỎNG THAO TÁC · BƯỚC 01 / 04",
+        icon: "💬",
+        title: "Bạn gửi 1 đường link (hoặc để lịch tự chạy)",
+        desc: "Chỉ cần copy đường link bài viết hoặc sản phẩm gửi vào khung chat trợ lý — hoặc hẹn giờ cố định để hệ thống tự động làm việc mỗi sáng.",
+        mockLabel: "TIN NHẮN CỦA BẠN (07:30 SÁNG):",
+        mockText: "“Làm giúp mình video từ bài tin tức thị trường hôm nay nhé!”",
+        time: "⚡ Thời gian bạn bỏ ra: <strong>~10 giây</strong>"
+      },
+      {
+        tag: "HỆ THỐNG TỰ VẬN HÀNH · BƯỚC 02 / 04",
+        icon: "🎬",
+        title: "Nhà máy đám mây tự biên tập & lồng tiếng",
+        desc: "Trong vài phút, hệ thống tự viết lời bình súc tích, đọc bằng giọng AI tự nhiên (hoặc giọng clone của bạn) và ghép hiệu ứng số liệu mượt mà.",
+        mockLabel: "TRẠNG THÁI ĐÁM MÂY KENVINZONE:",
+        mockText: "✓ Đã viết kịch bản · ✓ Đã lồng giọng đọc · ✓ Đang kết xuất đồ họa HD...",
+        time: "⚡ Thời gian bạn bỏ ra: <strong>0 giây (Tự động 100%)</strong>"
+      },
+      {
+        tag: "CHẾ ĐỘ CHỜ AN TOÀN · BƯỚC 03 / 04",
+        icon: "🔒",
+        title: "Tự động tải lên kênh ở chế độ Riêng tư",
+        desc: "Video hoàn chỉnh được đẩy thẳng lên kênh YouTube / TikTok của bạn ở chế độ Chờ duyệt và gửi thông báo kèm link xem trước về điện thoại.",
+        mockLabel: "THÔNG BÁO GỬI VỀ ĐIỆN THOẠI CỦA BẠN:",
+        mockText: "🎬 Video mới đã tải lên kênh (Chế độ Riêng tư). Mời bạn xem trước!",
+        time: "⚡ Kiểm soát an toàn: <strong>100% trước khi lên sóng</strong>"
+      },
+      {
+        tag: "QUYỀN QUYẾT ĐỊNH Ở BẠN · BƯỚC 04 / 04",
+        icon: "👍",
+        title: "Xem thử & Nhắn “Duyệt” để công khai",
+        desc: "Bạn mở điện thoại xem lại. Ưng ý chỉ cần nhắn chữ ‘Duyệt’ là video lập tức lên sóng Công khai. Không cần bật máy tính dù chỉ 1 phút!",
+        mockLabel: "PHẢN HỒI CỦA BẠN TRÊN ĐIỆN THOẠI:",
+        mockText: "“Duyệt”  ➔  ✅ Video đã chuyển sang Công khai trên kênh!",
+        time: "⚡ Tổng thao tác của bạn: <strong>Chỉ 1 tin nhắn “Duyệt”</strong>"
+      }
+    ];
+
+    let activeJourneyIdx = 0;
+
+    function selectJourneyStep(idx) {
+      if (idx === activeJourneyIdx && document.querySelectorAll('.journey-card.active').length === 1) return;
+      activeJourneyIdx = idx;
+
+      document.querySelectorAll('.journey-card').forEach((c, i) => c.classList.toggle('active', i === idx));
+      document.querySelectorAll('.jv-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+
+      const s = JOURNEY_STEPS[idx];
+      const stageBox = document.getElementById('jv-stage-content');
+      stageBox.style.opacity = '0';
+      stageBox.style.transform = 'translateY(8px)';
+
+      setTimeout(() => {
+        document.getElementById('jv-step-tag').textContent = s.tag;
+        stageBox.innerHTML = `
+          <div style="font-size:2.4rem; margin-bottom:10px;">${s.icon}</div>
+          <h4 style="font-size:1.3rem; margin-bottom:8px;">${s.title}</h4>
+          <p style="color:#cbd5e1; font-size:0.95rem;">${s.desc}</p>
+          <div class="jv-mock-ui">
+            <div style="color:#94a3b8; font-size:0.72rem; margin-bottom:4px;">${s.mockLabel}</div>
+            <div style="color:#fde68a; font-weight:600;">${s.mockText}</div>
+          </div>
+        `;
+        document.getElementById('jv-time-badge').innerHTML = s.time;
+        stageBox.style.opacity = '1';
+        stageBox.style.transform = 'translateY(0)';
+      }, 140);
+    }
+
+    // 6. Theme Toggle
+    function toggleTheme() {
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      document.getElementById('theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+
+    // 7. Copy Contact & Lead Form Composer
+    function copyText(id, btn) {
+      const txt = document.getElementById(id).textContent.trim();
+      navigator.clipboard.writeText(txt);
+      const old = btn.textContent;
+      btn.textContent = "Đã chép ✓";
+      setTimeout(() => { btn.textContent = old; }, 1600);
+    }
+
+    function handleLeadSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('c-name').value.trim();
+      const niche = document.getElementById('c-niche').value;
+      const need = document.getElementById('c-need').value.trim();
+      const contact = document.getElementById('c-contact').value.trim();
+      const phone = document.getElementById('val-phone').textContent.trim();
+
+      const msg = `Chào KenvinZone AutoVideo,\n- Tên mình là: ${name}\n- Lĩnh vực muốn làm kênh: ${niche}\n- Nhu cầu cụ thể: ${need || 'Nhận tư vấn trọn gói A-Z'}\n- Liên hệ lại mình qua Zalo/SĐT: ${contact}`;
+
+      const box = document.getElementById('lead-result-box');
+      box.hidden = false;
+      box.innerHTML = `
+        <div style="font-weight:700; margin-bottom:6px; color:#fde68a;">✓ Đã tạo sẵn nội dung yêu cầu tư vấn!</div>
+        <div style="font-size:0.85rem; color:#cbd5e1; margin-bottom:8px;">Sao chép nội dung dưới đây và gửi qua Zalo/WhatsApp <strong>0937062688</strong>, Telegram <strong>@kenvinzone / @KenvinHoang</strong> hoặc Email <strong>kenvinzone@gmail.com</strong>:</div>
+        <pre id="lead-composed-text" style="white-space:pre-wrap; background:rgba(0,0,0,0.3); padding:10px; border-radius:8px; font-family:inherit; margin-bottom:10px;">${msg}</pre>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <button type="button" class="btn btn-gold btn-sm" onclick="copyText('lead-composed-text', this)">📋 Sao chép tin nhắn</button>
+          <a href="https://zalo.me/0937062688" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm">💬 Mở Zalo 0937062688</a>
+          <a href="https://t.me/kenvinzone" target="_blank" rel="noopener" class="btn btn-outline-light btn-sm">✈️ Mở Telegram @kenvinzone</a>
+        </div>
+      `;
+    }
+
+    // 8. Initialize Lenis Smooth Scroll + GSAP ScrollTrigger Animations
+    window.addEventListener('DOMContentLoaded', () => {
+      // Top Scroll Ribbon & Watermark Parallax (Works with or without CDN)
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const pct = Math.min(100, Math.max(0, (y / max) * 100));
+        const ribbon = document.getElementById('scroll-ribbon');
+        if (ribbon) ribbon.style.width = `${pct}%`;
+
+        const wm = document.getElementById('hero-watermark');
+        if (wm && y < 1000) {
+          wm.style.transform = `translate3d(${-y * 0.22}px, ${y * 0.08}px, 0)`;
+        }
+
+        // Auto-activate Storyboard 1-2-3-4 cards based on viewport center
+        const cards = document.querySelectorAll('.journey-card');
+        const viewportMid = window.innerHeight * 0.48;
+        cards.forEach((card, idx) => {
+          const r = card.getBoundingClientRect();
+          if (r.top <= viewportMid && r.bottom >= viewportMid) {
+            selectJourneyStep(idx);
+          }
+        });
+      }, { passive: true });
+
+      // Enable Lenis Inertial Smooth Scrolling if loaded
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          lerp: 0.085,
+          smoothWheel: true,
+          wheelMultiplier: 0.95
+        });
+
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+          lenis.on('scroll', ScrollTrigger.update);
+          gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+          });
+          gsap.ticker.lagSmoothing(0);
+
+          // Subtle Scroll-Triggered Entrance Reveals
+          gsap.utils.toArray('.gsap-reveal').forEach((el) => {
+            gsap.fromTo(el,
+              { y: 34, opacity: 0.15 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.75,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: el,
+                  start: 'top 88%',
+                  toggleActions: 'play none none none'
+                }
+              }
+            );
+          });
+        } else {
+          function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+          requestAnimationFrame(raf);
+        }
+      }
+    });
+  </script>
 </body>
 </html>
